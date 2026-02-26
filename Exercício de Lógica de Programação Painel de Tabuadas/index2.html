@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Tabuadas</title>
+    <style>
+        body { background-color: #eef; }
+        #gerarBtn { background-color: #4CAF50; color: white; }
+        #limparBtn { background-color: #f44336; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Painel de Tabuadas Dinâmico</h1>
+            <p>Clique no botão abaixo para gerar as tabuadas de 1 a 10</p>
+        </header>
+
+        <div class="controls">
+            <button id="gerarBtn">Gerar Tabuadas</button>
+            <button id="limparBtn">Limpar</button>
+        </div>
+
+        <div id="painelResultados">
+            <div class="mensagem-vazia">Clique em "Gerar Tabuadas" para começar</div>
+        </div>
+    </div>
+
+    <script>
+        const gerarBtn = document.getElementById('gerarBtn');
+        const limparBtn = document.getElementById('limparBtn');
+        const painelResultados = document.getElementById('painelResultados');
+
+        
+        function gerarTabuadas() {
+            
+            painelResultados.innerHTML = '';
+
+           
+            for (let tabuada = 1; tabuada <= 10; tabuada++) {
+                
+                let conteudoCard = '';
+                conteudoCard += `<h2>Tabuada do ${tabuada}</h2>`;
+
+                
+                for (let multiplicador = 1; multiplicador <= 10; multiplicador++) {
+                    let resultado = tabuada * multiplicador;
+                    conteudoCard += `<div class="resultado-item">${tabuada} × ${multiplicador} = ${resultado}</div>`;
+                }
+
+                
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = conteudoCard;
+                painelResultados.appendChild(card);
+            }
+        }
+
+        
+        function limparPainel() {
+            painelResultados.innerHTML = '<div class="mensagem-vazia">Clique em "Gerar Tabuadas" para começar</div>';
+        }
+
+        
+        gerarBtn.addEventListener('click', gerarTabuadas);
+        limparBtn.addEventListener('click', limparPainel);
+    </script>
+    
+</body>
+</html>
